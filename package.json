@@ -1,5 +1,5 @@
 {
-  "name": "react-native-drag-and-order",
+  "name": "@markmccoid/react-native-drag-and-order",
   "version": "0.1.0",
   "description": "react native expo module to create a list that you can drag and reorder items",
   "main": "lib/commonjs/index",
