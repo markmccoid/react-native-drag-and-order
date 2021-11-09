@@ -1,3 +1,5 @@
-export function multiply(a: number, b: number): Promise<number> {
-  return Promise.resolve(a * b);
-}
+export { default as DragDropEntry } from './DragAndSort/DragDropEntry';
+
+export * from './DragAndSort/DragDropEntry';
+export * from './DragAndSort/helperFunctions';
+export { DragIndicatorProps } from './DragAndSort/DefaultDragIndicator';
