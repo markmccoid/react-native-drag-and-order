@@ -58,6 +58,13 @@ export function sortArray<T extends BaseArray>(
  * @param {T[]} baseArray
  * @param {string} positionField
  */
-export function updatePositionArrayField<T>(baseArray: T[], positionField: string) {
+export function updatePositionArrayField<T>(
+  baseArray: T[],
+  positionField: string
+) {
   return baseArray.map((item, idx) => ({ ...item, [positionField]: idx }));
+}
+
+export function testOut() {
+  console.log('out');
 }
