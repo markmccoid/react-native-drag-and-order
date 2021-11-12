@@ -1,21 +1,21 @@
-import * as React from 'react';
-import { ViewStyle } from 'react-native';
+import * as React from "react";
+import { ViewStyle } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedScrollHandler,
   useAnimatedRef,
-} from 'react-native-reanimated';
+} from "react-native-reanimated";
 
-import DefaultHandle from './Handle';
-import MoveableItem from './MoveableItem';
-import { Positions } from './helperFunctions';
+import DefaultHandle from "./Handle";
+import MoveableItem from "./MoveableItem";
+import { Positions } from "./helperFunctions";
 // Using context to pass positions object to the moveableitems
-import PositionsProvider from './DragSortContext';
+import PositionsProvider from "./DragSortContext";
 
 import defaultDragIndicator, {
   DragIndicatorProps,
   DragIndicatorConfig,
-} from './DefaultDragIndicator';
+} from "./DefaultDragIndicator";
 
 export type TScrollFunctions = {
   scrollToEnd: () => void;
@@ -27,10 +27,10 @@ interface Props {
   updatePositions: (positions: Positions) => void;
   itemHeight: number;
   handle?: React.FC;
-  handlePosition?: 'left' | 'right';
+  handlePosition?: "left" | "right";
   enableHapticFeedback?: boolean;
   dragIndicator?: React.FC<DragIndicatorProps>;
-  dragIndicatorConfig: Partial<DragIndicatorConfig>;
+  dragIndicatorConfig?: Partial<DragIndicatorConfig>;
   enableDragIndicator?: boolean;
   scrollStyles?: ViewStyle;
   getScrollFunctions?: (funtionObj: TScrollFunctions) => void;
@@ -43,13 +43,13 @@ const DragDropEntry = ({
   updatePositions,
   itemHeight,
   handle = DefaultHandle,
-  handlePosition = 'left',
+  handlePosition = "left",
   scrollStyles,
   getScrollFunctions,
   enableHapticFeedback = true,
   enableDragIndicator = false,
   dragIndicator = defaultDragIndicator,
-  dragIndicatorConfig,
+  dragIndicatorConfig = {},
   children,
 }: Props) => {
   //*Scrollview animated ref

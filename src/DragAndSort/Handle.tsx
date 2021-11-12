@@ -8,11 +8,14 @@ type DragHandleIconProps = {
   style?: StyleProp<TextStyle>;
 };
 const DragHandleIcon = ({ size, color, style }: DragHandleIconProps) => {
-  return <MaterialIcons name="drag-handle" size={size} color={color} style={style} />;
+  return (
+    <MaterialIcons name="drag-handle" size={size} color={color} style={style} />
+  );
 };
 
 const DefaultHandle: React.FC = () => (
   <View
+    // eslint-disable-next-line react-native/no-inline-styles
     style={{
       borderRightWidth: 1,
       borderRightColor: "#aaa",

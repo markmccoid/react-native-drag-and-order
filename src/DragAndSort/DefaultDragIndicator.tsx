@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import { View } from 'react-native';
-import { MotiView, Text } from 'moti';
+import React from "react";
+import { View } from "react-native";
+import { MotiView, Text } from "moti";
 
 export type DragIndicatorConfig = {
   translateXDistance: number;
@@ -13,7 +13,7 @@ export type DragIndicatorConfig = {
 
 export type DragIndicatorProps = {
   itemHeight: number;
-  fromLeftOrRight?: 'left' | 'right';
+  fromLeftOrRight?: "left" | "right";
   currentPosition: number;
   totalItems: number;
   config: Partial<DragIndicatorConfig>;
@@ -22,8 +22,8 @@ export type DragIndicatorProps = {
 const defaultDragConfig = {
   translateXDistance: 10,
   indicatorBorderWidth: 1,
-  indicatorBorderColor: 'black',
-  indicatorBackgroundColor: '#eee',
+  indicatorBorderColor: "black",
+  indicatorBackgroundColor: "#eee",
   indicatorBorderRadius: 10,
 };
 /**.
@@ -38,12 +38,12 @@ const defaultDragConfig = {
  */
 const DefaultDragIndicator: React.FC<DragIndicatorProps> = ({
   itemHeight,
-  fromLeftOrRight = 'right',
+  fromLeftOrRight = "right",
   currentPosition,
   totalItems,
   config,
 }) => {
-  const direction = fromLeftOrRight === 'left' ? -1 : 1;
+  const direction = fromLeftOrRight === "left" ? -1 : 1;
   const {
     translateXDistance,
     indicatorBackgroundColor,
@@ -55,12 +55,12 @@ const DefaultDragIndicator: React.FC<DragIndicatorProps> = ({
   return (
     <MotiView
       style={{
-        position: 'absolute',
+        position: "absolute",
         [fromLeftOrRight]: 0,
         backgroundColor: indicatorBackgroundColor
           ? indicatorBackgroundColor
-          : '#eee',
-        justifyContent: 'center',
+          : "#eee",
+        justifyContent: "center",
         borderWidth: indicatorBorderWidth,
         borderColor: indicatorBorderColor,
         marginTop: (itemHeight - itemHeight / 1.5) / 2,
@@ -83,11 +83,11 @@ const DefaultDragIndicator: React.FC<DragIndicatorProps> = ({
         // scale: 0.5,
       }}
       transition={{
-        type: 'spring',
+        type: "spring",
         delay: 100,
       }}
       exitTransition={{
-        type: 'spring',
+        type: "spring",
         delay: 500,
       }}
     >
@@ -108,7 +108,7 @@ const DragIndicatorDisplay: React.FC<{
   return (
     <View
       style={{
-        flexDirection: 'row',
+        flexDirection: "row",
         paddingRight: 10,
         paddingLeft: 20,
       }}
@@ -116,10 +116,10 @@ const DragIndicatorDisplay: React.FC<{
       <MotiView
         from={{ scale: 2.25 }}
         animate={{ scale: 1.5 }}
-        transition={{ type: 'timing', duration: 500 }}
+        transition={{ type: "timing", duration: 500 }}
         key={currentPosition}
       >
-        <Text style={{ color: 'green', paddingRight: 3 }}>
+        <Text style={{ color: "green", paddingRight: 3 }}>
           {currentPosition}
         </Text>
       </MotiView>

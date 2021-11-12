@@ -19,7 +19,10 @@ import {
 } from "react-native-gesture-handler";
 import * as Haptics from "expo-haptics";
 
-import { DragIndicatorProps, DragIndicatorConfig } from "./DefaultDragIndicator";
+import {
+  DragIndicatorProps,
+  DragIndicatorConfig,
+} from "./DefaultDragIndicator";
 
 import { Positions } from "./helperFunctions";
 import { usePositions } from "./DragSortContext";
@@ -94,7 +97,10 @@ const MoveableItem = ({
   // initialRender is used if another animation happens on NON moving items when they
   // change position.  It keeps that animation from running on the first render.
   const initialRender = useSharedValue(true);
-  const contentHeight = React.useMemo(() => numberOfItems * itemHeight, [numberOfItems]);
+  const contentHeight = React.useMemo(
+    () => numberOfItems * itemHeight,
+    [numberOfItems]
+  );
   const boundY = numberOfItems * itemHeight - itemHeight;
 
   // Whenever the positions.value changes, this reaction will run
@@ -169,7 +175,11 @@ const MoveableItem = ({
 
       //* Check to see if we need to set a new position and do it if so
       if (newPosition !== positions.value[id]) {
-        positions.value = objectMove(positions.value, positions.value[id], newPosition);
+        positions.value = objectMove(
+          positions.value,
+          positions.value[id],
+          newPosition
+        );
         if (Platform.OS === "ios" && enableHapticFeedback) {
           runOnJS(Haptics.impactAsync)(Haptics.ImpactFeedbackStyle.Light);
         }
@@ -242,7 +252,9 @@ const MoveableItem = ({
     <Animated.View style={animatedStyle}>
       {handlePosition === "right" && (
         <View style={{ flex: 1 }}>
-          {React.cloneElement(children as React.ReactElement<any>, { isMoving: moving.value })}
+          {React.cloneElement(children as React.ReactElement<any>, {
+            isMoving: moving.value,
+          })}
           <AnimatePresence>
             {isActive && enableDragIndicator && (
               <DragIndicator
@@ -263,7 +275,9 @@ const MoveableItem = ({
       </PanGestureHandler>
       {handlePosition === "left" && (
         <View style={{ flex: 1 }}>
-          {React.cloneElement(children as React.ReactElement<any>, { isMoving: moving.value })}
+          {React.cloneElement(children as React.ReactElement<any>, {
+            isMoving: moving.value,
+          })}
           <AnimatePresence>
             {isActive && enableDragIndicator && (
               <DragIndicator
