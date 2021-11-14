@@ -2,17 +2,21 @@ interface BaseArray {
   id: string | number;
 }
 
+// Positions type defines is the key/id of each of your child items
+// with the value being the position that key/id is within your list
 export type Positions = {
-  [key: string]: number;
+  [key_id: string]: number;
 };
 /**
- *USAGE - sortArray(positions, itemList, 'pos')
+ * USAGE - sortArray(positions, itemList, 'pos')
+ * This function is desinged to make it easy for to resort array of object
+ * that are the children in your drag/drop list.
  *
  * @export
  * @template T
- * @param {Positions} positions
- * @param {T[]} baseArray
- * @param {string} [positionField]
+ * @param {Positions} positions - provided by the DragDropEntry component in the updatePositions function
+ * @param {T[]} baseArray - array that you want "resorted"
+ * @param {string} [positionField] - optional name of the field that holds the position value
  */
 export function sortArray<T extends BaseArray>(
   positions: Positions,
@@ -63,8 +67,4 @@ export function updatePositionArrayField<T>(
   positionField: string
 ) {
   return baseArray.map((item, idx) => ({ ...item, [positionField]: idx }));
-}
-
-export function testOut() {
-  console.log('out');
 }
