@@ -26,7 +26,7 @@ export function sortArray<T extends BaseArray>(
   { positionField, idField = "id" }: { positionField?: string; idField: string }
 ) {
   if (Object.keys(positions).length < 1) {
-    return;
+    return [];
   }
 
   // positions is object { [id_of_filter]: index position },
@@ -42,10 +42,10 @@ export function sortArray<T extends BaseArray>(
 
   const finalList = sortedIds.map((id, index) => {
     const arrayItem = baseArray.find((baseItem) => {
-      return baseItem[idField] == id;
+      return baseItem[idField] === id;
     });
     if (positionField) {
-      return { ...arrayItem, [positionField]: index };
+      return { ...arrayItem, [positionField]: index } as T;
     }
     return arrayItem;
   });
@@ -67,6 +67,6 @@ export function sortArray<T extends BaseArray>(
 export function updatePositionArrayField<T>(
   baseArray: T[],
   positionField: string
-) {
+): T[] {
   return baseArray.map((item, idx) => ({ ...item, [positionField]: idx }));
 }
