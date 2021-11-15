@@ -8,22 +8,24 @@ export type Positions = {
   [key_id: string]: number;
 };
 /**
- * USAGE - sortArray(positions, itemList, 'pos')
+ * USAGE - sortArray(positions, itemList, { positionField, idField })
  * This function is desinged to make it easy for to resort array of object
  * that are the children in your drag/drop list.
+ *
  *
  * @export
  * @template T
  * @param {Positions} positions - provided by the DragDropEntry component in the updatePositions function
  * @param {T[]} baseArray - array that you want "resorted"
- * @param {string} [positionField] - optional name of the field that holds the position value
+ * @param { positionField?: string; idField: string } - optional position field name,
+ *            idField is the name of the id field.  Not options, but defaults to "id" if not passed.
  */
 export function sortArray<T extends BaseArray>(
   positions: Positions,
   baseArray: T[],
-  positionField?: string
+  { positionField, idField = "id" }: { positionField?: string; idField: string }
 ) {
-  if (Object.keys(positions).length <= 1) {
+  if (Object.keys(positions).length < 1) {
     return;
   }
 
@@ -40,7 +42,7 @@ export function sortArray<T extends BaseArray>(
 
   const finalList = sortedIds.map((id, index) => {
     const arrayItem = baseArray.filter((baseItem) => {
-      return baseItem.id == id;
+      return baseItem[idField] === id;
     })[0];
     if (positionField) {
       return { ...arrayItem, [positionField]: index };

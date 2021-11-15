@@ -169,7 +169,7 @@ It is helpful to see what parts make up the DragDropEntry component. Here is a v
 
   ```typescript
   export type Positions = {
-    [key: string]: number;
+    [id: string]: number;
   };
 
   // the key is the id in your original array, the value is the current position
@@ -183,7 +183,7 @@ It is helpful to see what parts make up the DragDropEntry component. Here is a v
   };
   ```
 
-  **sortArray** accepts the **positions** object, your **item array** and optionally the name of your position field (if you use one).
+  **sortArray** accepts the **positions** object, your **item array** and an object that lets you tell the function the name of your position field (if you use one) and the name of the **idField**.  The Position Field is only needed if you use it, the **idField** is required, but will default to "id" if nothing is passed.
 
   Here is an example usage:
 
@@ -191,7 +191,7 @@ It is helpful to see what parts make up the DragDropEntry component. Here is a v
   <DragDropEntry
   	scrollStyles={{ width: "100%", height: "30%", borderWidth: 1, borderColor: "#aaa" }}
   	updatePositions={(positions) =>
-  				updateItemList(sortArray<ItemType>(positions, items, "pos"))
+  				updateItemList(sortArray<ItemType>(positions, items, { positionField: "pos" }))
   		}
     ...
   >
@@ -279,8 +279,7 @@ It is helpful to see what parts make up the DragDropEntry component. Here is a v
         <DragDropEntry
           scrollStyles={{ width: "100%", height: "30%", borderWidth: 1, borderColor: "#aaa" }}
           updatePositions={(positions: Positions) => {
-            console.log(sortArray<ItemType>(positions, items, "pos"));
-            setItems(sortArray<ItemType>(positions, items, "pos"));
+            setItems(sortArray<ItemType>(positions, items, { positionField: "pos" }));
           }}
           getScrollFunctions={(scrollFuncs: TScrollFunctions) => setScrollFunctions(scrollFuncs)}
           itemHeight={50}
@@ -346,8 +345,8 @@ It is helpful to see what parts make up the DragDropEntry component. Here is a v
               borderWidth: 1,
               margin: 5,
               backgroundColor: "#0084fa",
-
-              borderRadius: 10,
+  
+            borderRadius: 10,
             }}
             onPress={() => {
               scrollFunctions?.scrollToStart();
@@ -356,8 +355,8 @@ It is helpful to see what parts make up the DragDropEntry component. Here is a v
             <Text style={{ color: "white", fontSize: 19 }}>Scroll To Start</Text>
           </TouchableOpacity>
         </View>
-
-        <View
+  
+      <View
           style={{ width: "70%", height: "40%", borderWidth: 1, padding: 5, marginBottom: 10 }}
         >
           <ScrollView
@@ -390,8 +389,8 @@ It is helpful to see what parts make up the DragDropEntry component. Here is a v
       </SafeAreaView>
     );
   }
-
-  const styles = StyleSheet.create({
+  
+const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: "center",
@@ -410,9 +409,9 @@ It is helpful to see what parts make up the DragDropEntry component. Here is a v
       width: "80%",
     },
   });
-
-  ```
-
-  ## License
-
-  [MIT](https://github.com/enesozturk/react-native-hold-menu/blob/HEAD/LICENSE)
+  
+```
+  
+## License
+  
+[MIT](https://github.com/enesozturk/react-native-hold-menu/blob/HEAD/LICENSE)
