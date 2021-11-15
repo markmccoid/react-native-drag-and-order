@@ -87,7 +87,7 @@ const items = itemList: [
 
 It is helpful to see what parts make up the DragDropEntry component.  Here is a visual. 
 
-![2021-05-31_23-55-04](file:///Users/markmccoid/Documents/Programming/rn/react-native-drag-to-reorder/componentparts.png?lastModify=1636689221)
+![img](./componentparts.png)
 
 - **itemHeight** - *Required* - The height of the items that are returned as children of this component.  Needed so that we can calculate where each item should be positions.
 
