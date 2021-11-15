@@ -28,8 +28,8 @@ const DragItem = ({
         height: itemHeight,
         padding: 10,
         backgroundColor: "white",
-        borderBottomWidth: 1,
-        borderBottomColor: "#aaa",
+        borderWidth: 0.5,
+        borderColor: "#aaa",
         flex: 1,
       }}
     >
