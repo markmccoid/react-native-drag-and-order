@@ -1,10 +1,18 @@
-# react-native-drag-and-order
+# React Native Drag and Order
 
-This module takes a list of items and will display them in a scrollview.  The user will be able to reorder the list of items via Drag and Drop using a handle. 
+[![img](https://img.shields.io/badge/Types-Included-blue?style=flat-square)]() [![runs with expo](https://img.shields.io/badge/Runs%20with%20Expo-4630EB.svg?style=flat-square&logo=EXPO&labelColor=f3f3f3&logoColor=000)](https://expo.io/)
 
-Here is an example.
+An easy to use component for quickly adding a drag and order scrollable list to your app.
 
-![img](file:///Users/markmccoid/Documents/Programming/rn/react-native-drag-to-reorder/Video-Demo.gif?lastModify=1636689221) 
+![img](./Video-Demo.gif) 
+
+## Features
+
+- Animations powered with Reanimated v2.
+- Compatible with Expo.
+- Written in `TypeScript`.
+- Customizable Handle component.
+- Utility functions to facilitate reordering of lists.
 
 ## Installation
 
@@ -87,7 +95,7 @@ const items = itemList: [
 
 It is helpful to see what parts make up the DragDropEntry component.  Here is a visual. 
 
-![2021-05-31_23-55-04](file:///Users/markmccoid/Documents/Programming/rn/react-native-drag-to-reorder/componentparts.png?lastModify=1636689221)
+![img](./componentparts.png)
 
 - **itemHeight** - *Required* - The height of the items that are returned as children of this component.  Needed so that we can calculate where each item should be positions.
 
@@ -124,7 +132,7 @@ It is helpful to see what parts make up the DragDropEntry component.  Here is a 
 - **dragIndicatorConfig** - *Optional*- common config options passed to the dragIndicator.  By changing the config items, you may not need to create a custom **dragIndicator**
 
   - **translateXDistance** - How far should the drag indicator travel into the item
-    ![2021-06-12_23-48-07](/Users/markmccoid/Documents/Programming/rn/react-native-drag-to-reorder/dragConfig-translatex.png)
+    ![dragconfig translatex](./dragConfig-translatex.png)
   - **indicatorBorderWidth**
   - **indicatorBorderColor**
   - **indicatorBackgroundColor**
@@ -408,6 +416,10 @@ It is helpful to see what parts make up the DragDropEntry component.  Here is a 
   });
   
   ```
+  
+  ## License
+  
+  [MIT](https://github.com/enesozturk/react-native-hold-menu/blob/HEAD/LICENSE)
   
   
   
