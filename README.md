@@ -4,7 +4,7 @@
 
 An easy to use component for quickly adding a drag and order scrollable list to your app.
 
-![img](./Video-Demo.gif) 
+![img](./Video-Demo.gif)
 
 ## Features
 
@@ -19,7 +19,7 @@ An easy to use component for quickly adding a drag and order scrollable list to 
 ```bash
 $ yarn add @markmccoid/react-native-drag-and-order
 # Other dependancies
-$ yarn add moti 
+$ yarn add moti
 $ expo install react-native-reanimated react-native-gesture-handler
 ```
 
@@ -27,19 +27,17 @@ $ expo install react-native-reanimated react-native-gesture-handler
 
 The **DragDropEntry** component will accept children, which will be the items that you would like to be able to drag and order. The children you will be passing should be components that:
 
-1. Have an **id** prop. ** **This is important**
+1. Have an **id** prop. \*\* **This is important**
 2. Have a height that MATCHES the **itemHeight** props value provided to the **DragDropEntry** components itemHeight prop.
 
-> NOTE: A prop called **isMoving** will be injected into each child item.  You can use this prop to change behavior when the item is moving versus not.  This would be useful if you wanted to change the appearance of an item when it is being moved.  The style of your item component could include the following for the background color:
+> NOTE: A prop called **isMoving** will be injected into each child item. You can use this prop to change behavior when the item is moving versus not. This would be useful if you wanted to change the appearance of an item when it is being moved. The style of your item component could include the following for the background color:
 > `backgroundColor: isMoving ? 'red' : 'white'`
-
-
 
 Here is an example of using the component.
 
-The **DragDropEntry** component is the parent component that wraps the children **Items** that you want to be able to drag and drop.  You can create your own Item component for the children or use the provided **DragItem** component to wrap the values you want to be able to order.
+The **DragDropEntry** component is the parent component that wraps the children **Items** that you want to be able to drag and drop. You can create your own Item component for the children or use the provided **DragItem** component to wrap the values you want to be able to order.
 
-There is a helper function, **sortArray**, that is very useful in reordering and resetting any position/index field in your list.  This helper function is essential when you want to persist the order of your items to your state.
+There is a helper function, **sortArray**, that is very useful in reordering and resetting any position/index field in your list. This helper function is essential when you want to persist the order of your items to your state.
 
 ```jsx
 import DragDropEntry, { DragItem, sortArray, TScrollFunctions } from "react-native-drag-and-order";
@@ -64,7 +62,7 @@ const items = itemList: [
     { id: "l", name: "Lemons", pos: 11 },
     { id: "m", name: "Bread", pos: 12 },
   ];
-... 
+...
 
 <DragDropEntry
   scrollStyles={{ width: "100%", height: "30%", borderWidth: 1, borderColor: "#aaa" }}
@@ -93,31 +91,31 @@ const items = itemList: [
 
 ## DragDropEntry Props
 
-It is helpful to see what parts make up the DragDropEntry component.  Here is a visual. 
+It is helpful to see what parts make up the DragDropEntry component. Here is a visual.
 
 ![img](./componentparts.png)
 
-- **itemHeight** - *Required* - The height of the items that are returned as children of this component.  Needed so that we can calculate where each item should be positions.
+- **itemHeight** - _Required_ - The height of the items that are returned as children of this component. Needed so that we can calculate where each item should be positions.
 
-- **updatePositions** - *Required* - function that will run after drop that will reorder/update positions.  It will be passed the positions array of objects, which you can use to reorder your array OR. you can use the [**sortArray** helper function. ](#sortarray-helper-function-usage)
+- **updatePositions** - _Required_ - function that will run after drop that will reorder/update positions. It will be passed the positions array of objects, which you can use to reorder your array OR. you can use the [**sortArray** helper function. ](#sortarray-helper-function-usage)
 
   ```javascript
   positions = {
     id1: 3,
     id2: 1,
     id3: 2,
-    id4: 0
-  }
+    id4: 0,
+  };
   ```
 
-- [**handle** - *Optional* - React component to be used for handle.  A default is provided. If you provide your own Handle component, take a look at **Handle.tsx** for an example. 
+- [**handle** - _Optional_ - React component to be used for handle. A default is provided. If you provide your own Handle component, take a look at **Handle.tsx** for an example.
   ![defaulthandle](./defaulthandle.png)
 
-- **handlePosition** - *Optional* - **default is 'left'** - either 'left' or 'right'.  Positions the handle component on the left or right of each Item component.
+- **handlePosition** - _Optional_ - **default is 'left'** - either 'left' or 'right'. Positions the handle component on the left or right of each Item component.
 
-- **enableDragIndicator** - *Optional* - **default is 'false'** - Boolean that turns the drag indicator on or off.  The position of the indicator is decided by the handle position.  It will be *opposite* what the handlePosition is.
+- **enableDragIndicator** - _Optional_ - **default is 'false'** - Boolean that turns the drag indicator on or off. The position of the indicator is decided by the handle position. It will be _opposite_ what the handlePosition is.
 
-- **dragIndicator** - *Optional* - React component to be used for drag indicator. The component used will be passed the following props:
+- **dragIndicator** - _Optional_ - React component to be used for drag indicator. The component used will be passed the following props:
 
   ```jsx
   <DragIndicator
@@ -129,7 +127,7 @@ It is helpful to see what parts make up the DragDropEntry component.  Here is a 
   />
   ```
 
-- **dragIndicatorConfig** - *Optional*- common config options passed to the dragIndicator.  By changing the config items, you may not need to create a custom **dragIndicator**
+- **dragIndicatorConfig** - _Optional_- common config options passed to the dragIndicator. By changing the config items, you may not need to create a custom **dragIndicator**
 
   - **translateXDistance** - How far should the drag indicator travel into the item
     ![dragconfig translatex](./dragConfig-translatex.png)
@@ -138,11 +136,11 @@ It is helpful to see what parts make up the DragDropEntry component.  Here is a 
   - **indicatorBackgroundColor**
   - **indicatorBorderRadius**
 
-- **enableHapticFeedback** \- *Optional* - **default is 'false'** -  *boolean* - Enables haptic feedback when moving an item.
+- **enableHapticFeedback** \- _Optional_ - **default is 'false'** - _boolean_ - Enables haptic feedback when moving an item.
 
-- **scrollStyles** - *Optional* - styles that will be spread on ScrollView styles prop.
+- **scrollStyles** - _Optional_ - styles that will be spread on ScrollView styles prop.
 
-- **getScrollFunctions** - *Optional* - function that passes scroll function so calling component can scroll list to start or end.
+- **getScrollFunctions** - _Optional_ - function that passes scroll function so calling component can scroll list to start or end.
 
   - Implementation:
 
@@ -161,11 +159,11 @@ It is helpful to see what parts make up the DragDropEntry component.  Here is a 
 
     **scrollFunctions.scrollToEnd()** or **scrollFunctions.scrollToStart()** or **scrollFunctions.scrollToY(yPos)**
 
-  ##sortArray helper function usage
+  ## sortArray helper function usage
 
-  The most common use case for Drag to Reorder will involve an array of items that you want to be able to reorder.  To be practical, you will want to update the new sorted array somewhere to persist the state of that array.
+  The most common use case for Drag to Reorder will involve an array of items that you want to be able to reorder. To be practical, you will want to update the new sorted array somewhere to persist the state of that array.
 
-  This is what the **updatePositions** property is for.  It accepts a function, which will be called every time your list of items order is changed.  A **positions** object will be passed as the only argument to the function.  You can use this object to sort your own array, or use the sortArray helper function.
+  This is what the **updatePositions** property is for. It accepts a function, which will be called every time your list of items order is changed. A **positions** object will be passed as the only argument to the function. You can use this object to sort your own array, or use the sortArray helper function.
 
   First, the shape of the **positions** object:
 
@@ -173,16 +171,16 @@ It is helpful to see what parts make up the DragDropEntry component.  Here is a 
   export type Positions = {
     [key: string]: number;
   };
-  
+
   // the key is the id in your original array, the value is the current position
   // in the scrollview.
-  // 
+  //
   const positionExample = {
     a: 0,
     c: 3,
     b: 1,
-    d: 2
-  }
+    d: 2,
+  };
   ```
 
   **sortArray** accepts the **positions** object, your **item array** and optionally the name of your position field (if you use one).
@@ -198,17 +196,15 @@ It is helpful to see what parts make up the DragDropEntry component.  Here is a 
     ...
   >
   	...
-  </DragDropEntry>  
+  </DragDropEntry>
   ```
 
-  > NOTE: The sort array will always return the passed items array sorted and if your objects in the array include a *position* property.  This is optional and you do NOT need a position key in your object in the array.
+  > NOTE: The sort array will always return the passed items array sorted and if your objects in the array include a _position_ property. This is optional and you do NOT need a position key in your object in the array.
 
   ## Full Example in Single file
-  
+
   If you have all the base requirements sent, you should be able to past the following into your `App.tsx` and run a full working example:
-  
-  
-  
+
   ```jsx
   import React from "react";
   import {
@@ -220,7 +216,7 @@ It is helpful to see what parts make up the DragDropEntry component.  Here is a 
     TextInput,
     TouchableOpacity,
   } from "react-native";
-  
+
   import DragDropEntry, {
     DragItem,
     sortArray,
@@ -228,13 +224,13 @@ It is helpful to see what parts make up the DragDropEntry component.  Here is a 
     TScrollFunctions,
     Positions,
   } from "@markmccoid/react-native-drag-and-order";
-  
+
   export type ItemType = {
     id: number | string;
     name: string;
     pos: number;
   };
-  
+
   const itemData = [
     { id: "a", name: "Coconut Milk", pos: 0 },
     { id: "b", name: "Lettuce", pos: 1 },
@@ -250,7 +246,7 @@ It is helpful to see what parts make up the DragDropEntry component.  Here is a 
     { id: "l", name: "Lemons", pos: 11 },
     { id: "m", name: "Bread", pos: 12 },
   ];
-  
+
   export default function App() {
     // prevNumberOfItems used in useEffect (commented out by default)
     const prevNumberOfItems = React.useRef(0);
@@ -271,10 +267,10 @@ It is helpful to see what parts make up the DragDropEntry component.  Here is a 
           "pos"
         )
       );
-  
+
     // Store the scroll functions for our dragdrop list
     const [scrollFunctions, setScrollFunctions] = React.useState<TScrollFunctions>();
-  
+
     //************************************************* */
     return (
       <SafeAreaView style={styles.container}>
@@ -350,7 +346,7 @@ It is helpful to see what parts make up the DragDropEntry component.  Here is a 
               borderWidth: 1,
               margin: 5,
               backgroundColor: "#0084fa",
-  
+
               borderRadius: 10,
             }}
             onPress={() => {
@@ -360,7 +356,7 @@ It is helpful to see what parts make up the DragDropEntry component.  Here is a 
             <Text style={{ color: "white", fontSize: 19 }}>Scroll To Start</Text>
           </TouchableOpacity>
         </View>
-  
+
         <View
           style={{ width: "70%", height: "40%", borderWidth: 1, padding: 5, marginBottom: 10 }}
         >
@@ -394,7 +390,7 @@ It is helpful to see what parts make up the DragDropEntry component.  Here is a 
       </SafeAreaView>
     );
   }
-  
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -414,14 +410,9 @@ It is helpful to see what parts make up the DragDropEntry component.  Here is a 
       width: "80%",
     },
   });
-  
-  ```
-  
-  ## License
-  
-  [MIT](https://github.com/enesozturk/react-native-hold-menu/blob/HEAD/LICENSE)
-  
-  
-  
-  
 
+  ```
+
+  ## License
+
+  [MIT](https://github.com/enesozturk/react-native-hold-menu/blob/HEAD/LICENSE)
