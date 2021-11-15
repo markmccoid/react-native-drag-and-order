@@ -4,7 +4,7 @@ This module takes a list of items and will display them in a scrollview.  The us
 
 Here is an example.
 
-![img](file:///Users/markmccoid/Documents/Programming/rn/react-native-drag-to-reorder/Video-Demo.gif?lastModify=1636689221) 
+![img](./Video-Demo.gif) 
 
 ## Installation
 
