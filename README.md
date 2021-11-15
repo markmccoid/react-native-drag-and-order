@@ -153,7 +153,7 @@ It is helpful to see what parts make up the DragDropEntry component.  Here is a 
 
     **scrollFunctions.scrollToEnd()** or **scrollFunctions.scrollToStart()** or **scrollFunctions.scrollToY(yPos)**
 
-  ##sortArray helper function usage
+  ## sortArray helper function usage
 
   The most common use case for Drag to Reorder will involve an array of items that you want to be able to reorder.  To be practical, you will want to update the new sorted array somewhere to persist the state of that array.
 
