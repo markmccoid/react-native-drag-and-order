@@ -41,9 +41,9 @@ export function sortArray<T extends BaseArray>(
   });
 
   const finalList = sortedIds.map((id, index) => {
-    const arrayItem = baseArray.filter((baseItem) => {
-      return baseItem[idField] === id;
-    })[0];
+    const arrayItem = baseArray.find((baseItem) => {
+      return baseItem[idField] == id;
+    });
     if (positionField) {
       return { ...arrayItem, [positionField]: index };
     }
