@@ -108,7 +108,7 @@ It is helpful to see what parts make up the DragDropEntry component. Here is a v
   };
   ```
 
-- [**handle** - _Optional_ - React component to be used for handle. A default is provided. If you provide your own Handle component, take a look at **Handle.tsx** for an example.
+- [**handle** - _Optional_ - React component to be used for handle. A default is provided. If you provide your own Handle component, take a look at **Handle.tsx** for an example. [Custom Handle Example](#custom-handle-example)
   ![defaulthandle](./defaulthandle.png)
 
 - **handlePosition** - _Optional_ - **default is 'left'** - either 'left' or 'right'. Positions the handle component on the left or right of each Item component.
@@ -171,7 +171,7 @@ It is helpful to see what parts make up the DragDropEntry component. Here is a v
   export type Positions = {
     [id: string]: number;
   };
-
+  
   // the key is the id in your original array, the value is the current position
   // in the scrollview.
   //
@@ -216,7 +216,7 @@ It is helpful to see what parts make up the DragDropEntry component. Here is a v
     TextInput,
     TouchableOpacity,
   } from "react-native";
-
+  
   import DragDropEntry, {
     DragItem,
     sortArray,
@@ -224,13 +224,13 @@ It is helpful to see what parts make up the DragDropEntry component. Here is a v
     TScrollFunctions,
     Positions,
   } from "@markmccoid/react-native-drag-and-order";
-
+  
   export type ItemType = {
     id: number | string;
     name: string;
     pos: number;
   };
-
+  
   const itemData = [
     { id: "a", name: "Coconut Milk", pos: 0 },
     { id: "b", name: "Lettuce", pos: 1 },
@@ -246,7 +246,7 @@ It is helpful to see what parts make up the DragDropEntry component. Here is a v
     { id: "l", name: "Lemons", pos: 11 },
     { id: "m", name: "Bread", pos: 12 },
   ];
-
+  
   export default function App() {
     // prevNumberOfItems used in useEffect (commented out by default)
     const prevNumberOfItems = React.useRef(0);
@@ -267,10 +267,10 @@ It is helpful to see what parts make up the DragDropEntry component. Here is a v
           "pos"
         )
       );
-
+  
     // Store the scroll functions for our dragdrop list
     const [scrollFunctions, setScrollFunctions] = React.useState<TScrollFunctions>();
-
+  
     //************************************************* */
     return (
       <SafeAreaView style={styles.container}>
@@ -390,28 +390,106 @@ It is helpful to see what parts make up the DragDropEntry component. Here is a v
     );
   }
   
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
+  const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "flex-start",
+        borderWidth: 1,
+        // borderColor: "red",
+      },
+      title: {
+        marginTop: 10,
+        fontSize: 20,
+        fontWeight: "bold",
+      },
+      separator: {
+        marginVertical: 5,
+        height: 1,
+        width: "80%",
+      },
+    });
+  
+
+
+
+## Custom Handle Example
+
+You have full control over the handle and can customize how it looks.  This could be changing the icon or the appearance.  Here is an example:
+
+![Custom Handle](./customhandleexample_001.png)
+
+Here is the code for the handle:
+
+```jsx
+type DragHandleIconProps = {
+  size: number;
+  color?: string;
+  style?: StyleProp<TextStyle>;
+};
+const DragHandleIcon = ({ size, color, style }: DragHandleIconProps) => {
+  return <MaterialIcons name="drag-handle" size={size} color={color} style={style} />;
+};
+
+const MyHandle: React.FC = () => (
+  <View
+    style={{
+      height: 50,
       alignItems: "center",
-      justifyContent: "flex-start",
-      borderWidth: 1,
-      // borderColor: "red",
-    },
-    title: {
-      marginTop: 10,
-      fontSize: 20,
-      fontWeight: "bold",
-    },
-    separator: {
-      marginVertical: 5,
-      height: 1,
-      width: "80%",
-    },
-  });
-  
+      justifyContent: "center",
+    }}
+  >
+    <View
+      style={{
+        borderWidth: 1,
+        borderColor: "#aaa",
+        borderRadius: 10,
+        marginLeft: 4,
+        marginRight: 2,  // Create a space between handle and item
+        height: 45,
+        backgroundColor: "white",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingHorizontal: 5,
+      }}
+    >
+      <DragHandleIcon size={25} />
+    </View>
+  </View>
 ```
-  
+
+This is how you would use that handle in your Drag and Order component:
+
+```jsx
+...
+      <DragDropEntry
+        updatePositions={(positions) =>
+          updateTags(sortArray<TagArray>(positions, tagData, { idField: "tagId" }))
+        }
+        itemHeight={50}
+        handlePosition="left"
+        handle={MyHandle} // Here we are using our custom handle
+        enableDragIndicator
+        dragIndicatorConfig={{ translateXDistance: 100 }}
+      >
+        {tagData.map((item, idx) => {
+          return (
+            <TagItem
+              key={item.tagId}
+              id={item.tagId}
+              name={item.tagName}
+              height={50}
+              onDeleteTag={onDeleteTag}
+              onEditTag={onEditTag}
+            />
+          );
+        })}
+      </DragDropEntry>
+...
+```
+
+
+
 ## License
-  
-[MIT](https://github.com/enesozturk/react-native-hold-menu/blob/HEAD/LICENSE)
+
+  [MIT](https://github.com/enesozturk/react-native-hold-menu/blob/HEAD/LICENSE)
