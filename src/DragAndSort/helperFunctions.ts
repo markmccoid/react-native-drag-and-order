@@ -1,6 +1,6 @@
-interface BaseArray {
-  id: string | number;
-}
+// interface BaseArray {
+//   id: string | number;
+// }
 
 // Positions type defines is the key/id of each of your child items
 // with the value being the position that key/id is within your list
@@ -20,7 +20,7 @@ export type Positions = {
  * @param { positionField?: string; idField: string } - optional position field name,
  *            idField is the name of the id field.  Not options, but defaults to "id" if not passed.
  */
-export function sortArray<T extends BaseArray>(
+export function sortArray<T>(
   positions: Positions,
   baseArray: T[],
   { positionField, idField = "id" }: { positionField?: string; idField: string }
@@ -42,7 +42,9 @@ export function sortArray<T extends BaseArray>(
 
   const finalList = sortedIds.map((id, index) => {
     const arrayItem = baseArray.find((baseItem) => {
-      return baseItem[idField] === id;
+      // idField may contain string or number, so convert to string to be sure
+      // comparison returns what we expect.
+      return `${baseItem[idField]}` === `${id}`;
     });
     if (positionField) {
       return { ...arrayItem, [positionField]: index } as T;
