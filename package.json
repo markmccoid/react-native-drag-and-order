@@ -82,7 +82,7 @@
     "react-native": "*",
     "react-native-gesture-handler": ">=1.8.0",
     "react-native-reanimated": ">=2.1.0",
-    "expo-haptics": "~11.0.3"
+    "expo-haptics": "^12.2.1"
   },
   "commitlint": {
     "extends": [
